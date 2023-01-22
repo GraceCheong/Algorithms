@@ -42,3 +42,9 @@
 #     print(deliveries)
 #     print(pickups)
 #     return answer
+
+
+# 문제점! :
+# 뭔가 중복이 발생함 (어떻게 dealing 할지 생각 필요)
+# 흠 뭔가 중간부분 if boxes >= cap or (boxes + deliveries[i+1]) > cap: 부분에서 문제가 생긴듯 =-= portable 형태로 바꿀 수 있을까?
+#
