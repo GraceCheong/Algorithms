@@ -1,41 +1,36 @@
 def solution(cap, n, deliveries, pickups):
     answer = 0
-    now = 0
+    deliverylist = []
+    pickuplist = []
+
+    for i in range(len(deliveries)):
+        if deliveries[i] > 0:
+            deliverylist.append((deliveries[i], i))
+        if pickups[i] > 0:
+            pickuplist.append((pickups[i], i))
+
+    print(deliverylist, pickuplist)
     portable = cap
 
-    for i in range(len(deliveries)) :
-        if deliveries[i] != 0 :
-            portable -= deliveries[i]
-            now = i
+    while len(deliverylist) > 0 :
+        weight, dist = deliverylist.pop(0)
 
-            if portable <= 0 :
-                while(portable <= 0):
-                    portable += cap
-                    answer += (now+1)*2
-                p = cap
-                for j in range(i):
-                    if (p - pickups[i-j]) >= 0:
-                        p -= pickups[i-j]
-                        pickups[i-j] = 0
-                    elif (p - pickups[i-j]) < 0 :
-                        if p == 0 :
-                            pickups[i-j] -= p
-                        break
+        if weight <= portable :
+            portable -= weight
+            print(weight)
+        else:
+            while weight < portable:
+                print(weight)
+                print(dist+1)
+                answer += (dist+1)*2
+                weight -= cap
+            portable -= weight
 
-            if i == len(deliveries)-1 and portable < cap:
-                answer += (i+1)*2
-
-    portable = cap
-    for j in range(len(pickups)):
-        portable -= pickups[j]
-        if pickups[j] != 0 :
-            now = j
-            if portable < 0 :
-                while(portable <= 0):
-                    portable += cap
-                    answer += (now+1)*2
+        if portable == 0 or len(deliverylist) == 0 :
+            print(dist+1)
+            answer += (dist+1)*2
+            portable = cap
 
     return answer
 
-#
-# 뭔가 실행하면 정상적으로 돌아가는데 테케 돌리면 1개 빼고 다 실패 뜸 : 뭔가 놓치고 있는 부분이 있다!
+print(solution(2, 7, [1, 0, 2, 0, 1, 0, 2], [0, 2, 0, 1, 0, 2, 0]))
