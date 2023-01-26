@@ -1,5 +1,8 @@
 import math
 
+# bfs 로 풀었는데 어떤 테케는 통과를 못했다
+# 왜인지는 아직 모르겠음
+
 def solution(numbers):
     answer = []
     for item in numbers:
