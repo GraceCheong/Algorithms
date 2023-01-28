@@ -42,11 +42,11 @@ def solution(commands):
 
         elif cmd == "MERGE":
             r1, c1, r2, c2 = map(int, params)
+
             if r1 == r2 and c1 == c2:
-                break
+                continue
 
             if table[r1 - 1][c1 - 1].merged == True and table[r2 - 1][c2 - 1].merged == True:
-
                 if table[r1 - 1][c1 - 1] != None:
                     val = table[r1 - 1][c1 - 1].getval()
                 else:
@@ -63,24 +63,24 @@ def solution(commands):
                 else:
                     val = table[r2 - 1][c2 - 1].getval()
                 table[r2 - 1][c2 - 1].mlist.append([r1, c1])
-
                 for _r, _c in table[r2 - 1][c2 - 1].mlist:
                     table[_r - 1][_c - 1].val = val
                     table[_r - 1][_c - 1].mlist = table[r2 - 1][c2 - 1].mlist
                     table[_r - 1][_c - 1].merged = True
+
 
             elif table[r1 - 1][c1 - 1].merged == True and table[r2 - 1][c2 - 1].merged  == False:
                 if table[r1 - 1][c1 - 1] != None:
                     val = table[r1 - 1][c1 - 1].getval()
                 else:
                     val = table[r2 - 1][c2 - 1].getval()
+
                 table[r1 - 1][c1 - 1].mlist.append([r2, c2])
 
                 for _r, _c in table[r1 - 1][c1 - 1].mlist:
                     table[_r - 1][_c - 1].val = val
                     table[_r - 1][_c - 1].mlist = table[r1 - 1][c1 - 1].mlist
                     table[_r - 1][_c - 1].merged = True
-
             else:
                 if table[r1 - 1][c1 - 1] != None:
                     val = table[r1 - 1][c1 - 1].getval()
