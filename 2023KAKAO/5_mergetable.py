@@ -10,6 +10,7 @@ class tbody:
 def solution(commands):
     answer = []
     table = []
+
     for i in range(50):
         table.append([])
         for j in range(50):
@@ -42,7 +43,6 @@ def solution(commands):
 
         elif cmd == "MERGE":
             r1, c1, r2, c2 = map(int, params)
-
             if r1 == r2 and c1 == c2:
                 continue
 
