@@ -8,16 +8,20 @@ def put(k, stack: list):
     s = stack.copy()
 
     w, v = s.pop()
-    if not s :
+    if len(s) == 0 :
         if w > k : 
             return 0 
     
-    res = max(put(k, s), (v + put(k-w, s)) if k-w >=0 else 0)
-    #print(k, w, v, s, res)
-    del stack 
-    return res 
+    #print(w, v, s)
+
+    if k-w < 0 : # cannot carry the item now
+        return put(k, s)
+    else : 
+        res = max(put(k, s), v + put(k-w, s))
+        del s 
+        return res 
 
 n, k = map(int, input().split())
-stufflist = [list(map(int, input().split())) for i in range(n)]
+stufflist = [tuple(map(int, input().split())) for i in range(n)]
 
 print(put(k, stufflist))
