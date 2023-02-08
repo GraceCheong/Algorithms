@@ -7,13 +7,15 @@
 #include <iostream>
 #include <stdio.h>
 
-
 using namespace std;
+
+int sub();
 
 int main()
 {
     int N, K, data, max = INT_MIN, min = INT_MAX;
     cin >> N >> K;
+    
     
     
 }
