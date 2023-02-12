@@ -99,7 +99,15 @@ int installrecv(int s, int e, int& k, map<int, mNode>& diff, vector<int>& sensor
             }
         }
         
-        if(diff[sensors[e]].right < diff[sensors[s]].left)
+        if (diff[sensors[s]].left == 0)
+        {
+            total += diff[sensors[e]].right;
+        }
+        else if (diff[sensors[e]].right == 0 )
+        {
+            total += diff[sensors[s]].left;
+        }
+        else if(diff[sensors[e]].right < diff[sensors[s]].left)
         {
             total += diff[sensors[e]].right;
         }
